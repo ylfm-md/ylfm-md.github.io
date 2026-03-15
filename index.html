@@ -2,10 +2,144 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>YLFM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页 - 跳转演示</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(145deg, #f8f9ff 0%, #e6ecf5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 1rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 3rem;
+            box-shadow: 0 30px 50px rgba(0, 20, 40, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+            padding: 3rem 4rem;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.01);
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1e2b4f, #3a4e7a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.5px;
+            text-shadow: 2px 4px 10px rgba(0,30,70,0.1);
+        }
+
+        p {
+            font-size: 1.3rem;
+            color: #2c3e66;
+            margin-bottom: 2.8rem;
+            font-weight: 400;
+            opacity: 0.85;
+        }
+
+        .jump-button {
+            display: inline-block;
+            background: #2a3f6e;
+            border: none;
+            border-radius: 60px;
+            padding: 1.2rem 3.5rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 20px 30px -8px rgba(20, 40, 80, 0.4), 0 4px 0 0 #0f1a2e inset, 0 -2px 10px rgba(255,255,255,0.3) inset;
+            transition: all 0.15s ease;
+            border: 1px solid rgba(255,255,255,0.3);
+            line-height: 1;
+            text-decoration: none;
+        }
+
+        .jump-button:hover {
+            background: #345694;
+            transform: translateY(-4px);
+            box-shadow: 0 28px 35px -6px #1c2c4e, 0 3px 0 0 #0f1a2e inset, 0 -2px 12px white inset;
+        }
+
+        .jump-button:active {
+            transform: translateY(4px);
+            box-shadow: 0 10px 20px -5px #121f36, 0 2px 0 0 #0f1a2e inset;
+        }
+
+        /* 装饰小元素 */
+        .glow {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle at 30% 30%, rgba(255,240,200,0.4), transparent 70%);
+            border-radius: 50%;
+            top: -50px;
+            right: -50px;
+            z-index: -1;
+        }
+
+        .glow2 {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle at 70% 80%, rgba(180,210,255,0.35), transparent 70%);
+            border-radius: 50%;
+            bottom: -100px;
+            left: -50px;
+            z-index: -1;
+        }
+        footer {
+            margin-top: 2.5rem;
+            font-size: 0.9rem;
+            color: #556b8d;
+        }
+    </style>
 </head>
 <body>
-    <h1>YLFM的个人主页</h1>
-    <h1>Hello ~</h1>
+    <div class="glow"></div>
+    <div class="glow2"></div>
+    <main class="card">
+        <h1>✨ 起点页面</h1>
+        <p>你正站在旅程的入口，只需轻轻一点，就能抵达第二页。</p>
+        <!-- 跳转按钮: 点击直接跳转到 page2.html (同一目录下) -->
+        <button class="jump-button" id="goToPage2" onclick="location.href='page2.html'">➡️ 跳转到第二页</button>
+        <footer>—— index.html · 跳跃按钮已就绪 ——</footer>
+    </main>
+
+    <!-- 可选的额外保障: 如果button被任何意外覆盖，仍能跳转 (但onclick已经足够) -->
+    <script>
+        // 确保即使button被重复绑定也不会冲突，但这里保留优雅
+        (function() {
+            const btn = document.getElementById('goToPage2');
+            if(btn) {
+                // 已经使用 onclick 属性，但以防重复添加监听 (无妨)
+                btn.addEventListener('click', function(e) {
+                    // 如果 preventDefault 被意外调用，这里依然保证跳转，但无需额外动作，onclick已经执行
+                    // 但为了演示优雅，留空
+                });
+            }
+        })();
+    </script>
 </body>
 </html>
